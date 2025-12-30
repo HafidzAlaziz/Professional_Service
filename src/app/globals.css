@@ -4,39 +4,34 @@
 
 :root {
   --navy: #1a365d;
-  --gold: #d4af37;
+  --gold: #c5a021;
+  /* Adjusted to a more premium, deeper gold */
+  --navy-dark: #0f2139;
 }
 
-html {
-  scroll-behavior: smooth;
-  scroll-padding-top: 5rem;
-  /* Height of the sticky navbar */
-}
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
+  }
 
-body {
-  color: #1f2937;
-  background: #ffffff;
-  line-height: 1.6;
-}
+  body {
+    @apply text-slate-800 bg-white leading-relaxed;
+    font-family: var(--font-sans);
+  }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: var(--font-serif);
-  color: var(--navy);
-  line-height: 1.2;
-}
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-serif text-navy leading-tight;
+  }
 
-p,
-span,
-div,
-button,
-input,
-select {
-  font-family: var(--font-sans);
+  ::selection {
+    @apply bg-gold/30 text-navy;
+  }
 }
 
 .section-padding {

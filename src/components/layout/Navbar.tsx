@@ -104,12 +104,12 @@ const Navbar = () => {
                     </div>
 
                     {/* Mobile menu button */}
-                    <div className="lg:hidden z-[60]">
+                    <div className="lg:hidden z-[110]">
                         <button
                             onClick={() => setIsOpen(!isOpen)}
                             className={`p-2 rounded-xl transition-all duration-300 ${isOpen
                                 ? "text-white bg-white/10"
-                                : (scrolled || !isHomePage ? "text-navy bg-gray-50" : "text-white bg-white/10")
+                                : (scrolled || !isHomePage ? "text-navy bg-navy/5" : "text-white bg-white/10")
                                 }`}
                         >
                             {isOpen ? <X size={26} /> : <Menu size={26} />}
@@ -118,18 +118,24 @@ const Navbar = () => {
                 </div>
             </div>
 
-            {/* Mobile Menu */}
+            {/* Mobile Menu Overlay */}
             <div
-                className={`lg:hidden fixed inset-0 z-50 bg-navy transition-all duration-500 ease-in-out ${isOpen ? "opacity-100 pointer-events-auto translate-x-0" : "opacity-0 pointer-events-none translate-x-full"
+                className={`lg:hidden fixed inset-0 z-[100] bg-navy-dark transition-all duration-500 ease-in-out ${isOpen ? "opacity-100 pointer-events-auto translate-x-0" : "opacity-0 pointer-events-none translate-x-full"
                     }`}
             >
-                <div className="flex flex-col items-center justify-center min-h-screen space-y-10 p-6">
+                {/* Background Pattern for Menu */}
+                <div className="absolute inset-0 opacity-10 pointer-events-none overflow-hidden">
+                    <div className="absolute top-0 right-0 w-64 h-64 bg-gold rounded-full filter blur-[100px]"></div>
+                    <div className="absolute bottom-0 left-0 w-64 h-64 bg-gold/50 rounded-full filter blur-[100px]"></div>
+                </div>
+
+                <div className="relative z-10 flex flex-col items-center justify-center h-full w-full space-y-10 p-6 overflow-y-auto">
                     {navLinks.map((link) => (
                         <Link
                             key={link.name}
                             href={link.href}
                             onClick={() => setIsOpen(false)}
-                            className="text-3xl font-serif font-bold text-white hover:text-gold transition-colors"
+                            className="text-4xl font-serif font-bold text-white hover:text-gold transition-all duration-300 transform hover:scale-110"
                         >
                             {link.name}
                         </Link>
@@ -137,7 +143,7 @@ const Navbar = () => {
                     <Link
                         href="/#booking"
                         onClick={() => setIsOpen(false)}
-                        className="w-full max-w-xs text-center bg-gold text-white py-5 rounded-2xl font-bold text-xl shadow-2xl shadow-gold/20 mt-10"
+                        className="w-full max-w-xs text-center bg-gold text-white py-6 rounded-2xl font-bold text-xl shadow-2xl shadow-gold/20 mt-10 hover:bg-gold-light transition-colors"
                     >
                         Booking Konsultasi
                     </Link>
