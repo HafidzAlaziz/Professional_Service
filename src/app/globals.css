@@ -1,0 +1,93 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --navy: #1a365d;
+  --gold: #d4af37;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+  /* Height of the sticky navbar */
+}
+
+body {
+  color: #1f2937;
+  background: #ffffff;
+  line-height: 1.6;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-serif);
+  color: var(--navy);
+  line-height: 1.2;
+}
+
+p,
+span,
+div,
+button,
+input,
+select {
+  font-family: var(--font-sans);
+}
+
+.section-padding {
+  @apply py-24 md:py-32;
+}
+
+.container-custom {
+  @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+}
+
+/* Custom Accordion animation */
+.accordion-content {
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Form focus ring */
+.input-focus {
+  @apply focus:ring-2 focus:ring-gold/30 focus:border-gold outline-none transition-all;
+}
+
+@keyframes logo-path-1 {
+  0% {
+    stroke-dasharray: 0 100;
+    stroke-dashoffset: 0;
+    opacity: 0;
+  }
+
+  100% {
+    stroke-dasharray: 100 0;
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+}
+
+@keyframes logo-path-2 {
+  0% {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.animate-logo-path-1 {
+  animation: logo-path-1 2s ease-out forwards;
+}
+
+.animate-logo-path-2 {
+  animation: logo-path-2 1.5s ease-out 0.5s both;
+}
