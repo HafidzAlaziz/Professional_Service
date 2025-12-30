@@ -15,8 +15,19 @@ const Navbar = () => {
             setScrolled(window.scrollY > 50);
         };
         window.addEventListener("scroll", handleScroll);
-        return () => window.removeEventListener("scroll", handleScroll);
-    }, []);
+
+        // Prevent body scroll when mobile menu is open
+        if (isOpen) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = 'unset';
+        }
+
+        return () => {
+            window.removeEventListener("scroll", handleScroll);
+            document.body.style.overflow = 'unset';
+        };
+    }, [isOpen]);
 
     const navLinks = [
         { name: "Layanan", href: "/#services" },
@@ -93,10 +104,13 @@ const Navbar = () => {
                     </div>
 
                     {/* Mobile menu button */}
-                    <div className="lg:hidden">
+                    <div className="lg:hidden z-[60]">
                         <button
                             onClick={() => setIsOpen(!isOpen)}
-                            className={`p-2 rounded-xl transition-colors ${scrolled || !isHomePage ? "text-navy bg-gray-50" : "text-white bg-white/10"}`}
+                            className={`p-2 rounded-xl transition-all duration-300 ${isOpen
+                                ? "text-white bg-white/10"
+                                : (scrolled || !isHomePage ? "text-navy bg-gray-50" : "text-white bg-white/10")
+                                }`}
                         >
                             {isOpen ? <X size={26} /> : <Menu size={26} />}
                         </button>
@@ -106,16 +120,10 @@ const Navbar = () => {
 
             {/* Mobile Menu */}
             <div
-                className={`lg:hidden fixed inset-0 z-40 bg-navy transition-all duration-500 ease-in-out ${isOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+                className={`lg:hidden fixed inset-0 z-50 bg-navy transition-all duration-500 ease-in-out ${isOpen ? "opacity-100 pointer-events-auto translate-x-0" : "opacity-0 pointer-events-none translate-x-full"
                     }`}
             >
                 <div className="flex flex-col items-center justify-center min-h-screen space-y-10 p-6">
-                    <button
-                        onClick={() => setIsOpen(false)}
-                        className="absolute top-8 right-8 p-3 bg-white/10 rounded-full text-white"
-                    >
-                        <X size={30} />
-                    </button>
                     {navLinks.map((link) => (
                         <Link
                             key={link.name}
