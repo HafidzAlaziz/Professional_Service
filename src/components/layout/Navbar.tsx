@@ -40,7 +40,7 @@ const Navbar = () => {
 
     return (
         <nav
-            className={`fixed w-full z-50 transition-all duration-500 ${scrolled || !isHomePage ? "bg-white/90 backdrop-blur-md shadow-lg py-4 border-b border-gray-100" : "bg-transparent py-7"
+            className={`fixed w-full z-50 transition-all duration-500 ${isOpen ? "bg-navy" : (scrolled || !isHomePage ? "bg-white shadow-lg py-4 border-b border-gray-100" : "bg-transparent py-7")
                 }`}
         >
             <div className="container-custom">
@@ -109,7 +109,7 @@ const Navbar = () => {
                             onClick={() => setIsOpen(!isOpen)}
                             className={`p-2 rounded-xl transition-all duration-300 ${isOpen
                                 ? "text-white bg-white/10"
-                                : (scrolled || !isHomePage ? "text-navy bg-navy/5" : "text-white bg-white/10")
+                                : (scrolled || !isHomePage ? "text-navy bg-navy/10" : "text-white bg-white/10")
                                 }`}
                         >
                             {isOpen ? <X size={26} /> : <Menu size={26} />}
@@ -120,7 +120,7 @@ const Navbar = () => {
 
             {/* Mobile Menu Overlay */}
             <div
-                className={`lg:hidden fixed inset-0 z-[100] bg-navy-dark transition-all duration-500 ease-in-out ${isOpen ? "opacity-100 pointer-events-auto translate-x-0" : "opacity-0 pointer-events-none translate-x-full"
+                className={`lg:hidden fixed inset-0 z-[100] bg-navy transition-all duration-500 ease-in-out ${isOpen ? "opacity-100 pointer-events-auto translate-x-0" : "opacity-0 pointer-events-none translate-x-full"
                     }`}
             >
                 {/* Background Pattern for Menu */}
